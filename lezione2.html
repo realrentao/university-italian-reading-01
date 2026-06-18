@@ -1062,6 +1062,15 @@ async function getAudioData(key, type) {
       : '<span class="arrow">&#9654;</span> 显示参考摘要';
   }
 
+  function toggleEx4Translation(btn) {
+    const box = btn.nextElementSibling;
+    box.classList.toggle('open');
+    const showing = box.classList.contains('open');
+    btn.innerHTML = showing
+      ? '<span class="arrow open">&#9660;</span> 隐藏参考译文'
+      : '<span class="arrow">&#9654;</span> 显示参考译文';
+  }
+
 
   let paraSpeed = 1.0;
 
@@ -1672,55 +1681,57 @@ async function getAudioData(key, type) {
       </div>
       <!-- Ex 4 -->
       <div class="exercise-section">
-        <h3><span class="num">4</span> Tradurre il testo in cinese &mdash; 将课文译成中文</h3>
-        <p style="font-size:14px;color:var(--text-mid);margin-bottom:12px;">将课文《La stipsi di Godot》翻译成中文。</p>
-        <button class="ex4-toggle" onclick="toggleFullTranslation(this)">
+        <h3><span class="num">4</span> Leggere il testo e tradurre in cinese &mdash; 阅读课文并译成中文</h3>
+        <p style="font-size:13px;color:var(--text-mid);margin-bottom:10px;">阅读下面的意大利语短文，将其翻译成中文。</p>
+        
+        <div style="font-family:'Times New Roman','Georgia',serif;font-size:18px;line-height:1.8;color:#1A1A1A;padding:16px;background:#F8F6F3;border-radius:8px;border-left:3px solid var(--gold);margin-bottom:12px;">
+          <p style="margin-bottom:0.6em;text-indent:2em;">C'era uno che era devoto di San Giuseppe e basta. A San Giuseppe diceva tutte le orazioni, a San Giuseppe accendeva il cero, per San Giuseppe faceva le elemosine, insomma non vedeva altro che San Giuseppe.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">Viene il giorno che muore e si presenta a San Pietro. San Pietro non voleva riceverlo, perché tutto quel che aveva fatto di buono nella vita era stato di pregare per San Giuseppe. Di buone azioni, niente; e il Signore, la Madonna e gli altri Santi, come se per lui non esistessero.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Giacché sono venuto fin qua, — disse il devoto di San Giuseppe, — lasciate almeno che lo veda.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">E San Pietro mandò a chiamare San Giuseppe. San Giuseppe venne e appena vide quel suo devoto, fece:</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Ma bravo, sono proprio contento di averti con noi. Vieni, vieni dentro.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Non posso, c'è quello là che non vuole.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— E perché?</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Perché dice che ho pregato solo voi, e non gli altri Santi.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Ah, figuriamoci, cos'importa, vieni dentro lo stesso.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">Ma San Pietro si ostinò che non lo voleva. Ne nacque un gran battibecco e alla fine San Giuseppe disse a San Pietro:</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">— Oh, insomma, o lo lasci entrare, o io mi prendo su mia moglie e il mio bambino e vado a impiantare il Paradiso da un'altra parte.</p>
+          <p style="margin-bottom:0.6em;text-indent:2em;">Sua moglie era la Madonna, il suo bambino era Nostro Signore. San Pietro pensò meglio di cedere e di lasciare entrare il devoto di San Giuseppe.</p>
+        </div>
+
+        <!-- Vocab list -->
+        <div style="margin-bottom:12px;padding:12px;background:#F0F5F1;border-radius:8px;">
+          <div style="font-size:14px;font-weight:600;color:var(--ita-green);margin-bottom:6px;">单词表 Vocabolario</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px 12px;">
+            <span style="font-size:15px;color:var(--text-dark);"><b>devoto</b> s.m. 虔诚的教徒</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>basta</b> inter. 够了</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>orazione</b> s.f. 祷告</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>cero</b> s.m. 大蜡烛</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>elemosina</b> s.f. 布施</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>ostinarsi</b> v.rifl. 坚持</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>battibecco</b> s.m. 争吵</span>
+            <span style="font-size:15px;color:var(--text-dark);"><b>impiantare</b> v.tr. 建立</span>
+          </div>
+        </div>
+
+        <textarea id="trans_ex4" rows="8" style="width:100%;padding:12px;border:1.5px solid #D5D0C8;border-radius:8px;font-family:'Noto Serif SC',serif;font-size:17px;outline:none;resize:vertical;background:#FDFCFA;margin-bottom:10px;" placeholder="将上面的意大利语故事翻译成中文..."></textarea>
+        
+        <button class="ex4-toggle" onclick="toggleEx4Translation(this)">
           <span class="arrow">&#9654;</span> 显示参考译文
         </button>
         <div class="ex4-translation">
-          <p>从前有一对父母和儿子亚历山德罗。</p>
-          <p>问题在于，每当亚历山德罗要上厕所的时候，洗手间总是被占着。妈妈在梳头，爸爸在刮胡子，妈妈在化妆，爸爸在淋浴，她在脱毛，他在剪指甲，更不用说那些“基本需求”了。</p>
-          <p>“妈妈，我憋不住了！”</p>
-          <p>“再等一下，宝贝！”——可这一下却非常非常漫长。</p>
-          <p>“爸爸，我要进去。”</p>
-          <p>“马上出来！”——撒谎。</p>
-          <p>有一天，在像往常一样请求使用洗手间、并听到了妈妈同样的回答之后，亚历山德罗有了一个主意。</p>
-          <p>他走出家门，敲了敲比切太太的门——她就住在对面公寓，是他家的朋友。</p>
-          <p>“比切太太，我能用一下您的洗手间吗？”</p>
-          <p>“当然可以，进来吧！”</p>
-          <p>亚历山德罗用了洗手间，然后说：“比切太太，我能偶尔来您这儿上个洗手间吗？就一个星期。不过请您别告诉我爸妈——这是个玩笑。”</p>
-          <p>“好吧。”——比切太太说，她是个爱开玩笑的人。</p>
-          <p>亚历山德罗回到家里。过了一会儿妈妈从洗手间出来了。</p>
-          <p>“好了，宝贝，洗手间空了。”——她说。</p>
-          <p>“没关系，妈妈，我现在不急了。”</p>
-          <p>妈妈疑惑地看着他。</p>
-          <p>到了晚上，照常：</p>
-          <p>“爸爸，我要进洗手间。”</p>
-          <p>“马上就好！”</p>
-          <p>亚历山德罗溜到比切太太家，很快就回来了，正好赶在爸爸出来之前。</p>
-          <p>“洗手间空了！”——爸爸说。</p>
-          <p>“没关系，我不急了。”</p>
-          <p>爸爸看了看他，事情就这样过去了。</p>
-          <p>第二天同样如此：每当妈妈或爸爸从洗手间出来，亚历山德罗就说自己不再需要了。</p>
-          <p>父母皱起了眉头，商量了这件事。</p>
-          <p>第二天，他们把亚历山德罗带到了家庭医生加瓦齐那里。</p>
-          <p>“亚历山德罗再不上洗手间了。”——他们担忧地说。</p>
-          <p>“天哪！”——加瓦齐说——“让我看看。”</p>
-          <p>他开始给亚历山德罗做检查，并问他问题。</p>
-          <p>“在爸爸妈妈面前我不好意思回答。”——亚历山德罗说。</p>
-          <p>爸爸妈妈互相看了看。</p>
-          <p>“各位，病人想和我私下交流。”——加瓦齐说。</p>
-          <p>当只剩下他们两个人时，亚历山德罗把整个故事都说了出来。而加瓦齐比切太太还要爱开玩笑，两人很快就达成了共识。</p>
-          <p>当父母回来时，医生一脸严肃地说：</p>
-          <p>“这孩子患的是戈多便秘症。”</p>
-          <p>“戈多便秘症？”——妈妈惊恐地问——“那是什么？”</p>
-          <p>“这是一种罕见的病理状况。在某些人需要等待才能解决生理需求时会发生。”</p>
-          <p>“天哪！”——爸爸说——“这怎么治？”</p>
-          <p>“很遗憾，无药可治。如果孩子等待超过一分钟，他的戈多便秘症就可能复发——甚至永远无法治愈！”</p>
-          <p>“你的意思是说……他这辈子都不能再拉屎或撒尿了？”</p>
-          <p>“有可能。”——加瓦齐说。</p>
-          <p>“不，绝不会的！”——妈妈脸红着说。</p>
-          <p>事实上，从那以后再也没有发生过：从那天起，爸爸妈妈在洗手间里一分钟都不敢多待。而且如果亚历山德罗偶尔为了好玩说要进去，不管他们在做什么，都会立刻冲出来——被那可怕的、无法治愈的戈多便秘症吓得魂不附体。</p>
+          <p>有一个人是圣约瑟的虔诚教徒，仅此而已。他向圣约瑟念所有的祷文，为圣约瑟点燃蜡烛，为圣约瑟施舍布施——总之他眼里只有圣约瑟。</p>
+          <p>有一天他死了，来到圣彼得面前。圣彼得不肯收他，因为他一生中做的好事全都是为圣约瑟祈祷。善事？一件也没有。至于主、圣母和其他圣徒，对他来说仿佛根本不存在。</p>
+          <p>"既然我都来到这儿了，"圣约瑟的教徒说，"至少让我见他一面。"</p>
+          <p>圣彼得派人去叫圣约瑟。圣约瑟来了，一看到他的那位信徒就说：</p>
+          <p>"好极了，真高兴你来了。进来吧，快进来。"</p>
+          <p>"不行，外面那位不让我进。"</p>
+          <p>"为什么？"</p>
+          <p>"因为他说我只向您祈祷，没有向其他圣徒祈祷。"</p>
+          <p>"哎呀，这有什么关系，进来就是了。"</p>
+          <p>但圣彼得固执己见，不肯放他进来。于是两人大吵了一架。最后圣约瑟对圣彼得说：</p>
+          <p>"好吧，要么你让他进来，要么我就带上我的妻子和孩子，到别处去建一座天堂。"</p>
+          <p>他的妻子是圣母，他的孩子是我们的主。圣彼得想了想，觉得还是让步为好，让圣约瑟的教徒进了天堂。</p>
         </div>
       </div>
 
