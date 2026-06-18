@@ -735,6 +735,11 @@
   .lesson-nav a.back:hover {
     border-color: var(--ita-green); color: var(--ita-green); background: #F0F5F0;
   }
+  .lesson-nav a.prev {
+    background: var(--ita-green); color: #fff;
+    border: 1.5px solid var(--ita-green);
+  }
+  .lesson-nav a.prev:hover { background: #007A38; }
   .lesson-nav a.next {
     background: var(--ita-green); color: #fff;
     border: 1.5px solid var(--ita-green);
@@ -1195,9 +1200,13 @@ async function getAudioData(key, type) {
 
 <!-- ===== TOP LESSON NAV ===== -->
 <nav class="lesson-nav top">
-  <a href="index.html" class="back">
+  <a href="lezione1.html" class="prev">
     <svg viewBox="0 0 24 24"><polygon points="15,3 7,12 15,21" transform="scale(-1,1) translate(-22,0)"/></svg>
+    上一课
+  </a>
+  <a href="index.html" class="back">
     导航页
+    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
   </a>
   <a href="#" class="next disabled">
     下一课
