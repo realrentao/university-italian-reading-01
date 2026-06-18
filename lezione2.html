@@ -1688,3 +1688,14 @@ Vocabolario</h2>
             <p>父母担心起来，带他去看医生。医生诊断出罕见的"戈多便秘症"。</p>
             <p>从此，父母再也不敢让亚历山德罗等待了。</p>
           </div>
+      <div class="read-full-bar">
+        <span class="label">&#9654; 朗读全文</span>
+        <button class="play-full-btn" id="playFullBtn" onclick="playFullText()">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          播放
+        </button>
+        <span style="font-size:12px;color:var(--text-mid);">语速：</span>
+        <button class="speed-btn" data-speed="0.7" onclick="setSpeed(this, 0.7)">0.7×</button>
+        <button class="speed-btn active" data-speed="1.0" onclick="setSpeed(this, 1.0)">1.0×</button>
+        <button class="speed-btn" data-speed="1.3" onclick="setSpeed(this, 1.3)">1.3×</button>
+      </div>
