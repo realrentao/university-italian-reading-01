@@ -669,6 +669,12 @@
   .section-card.testo .section-body .p-wrap .orig-text {
     display: inline;
     transition: filter 0.35s ease;
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-image: linear-gradient(to right, rgba(0,146,70,0.12), rgba(0,146,70,0.12));
+  }
+  .section-card.testo .section-body .p-wrap .orig-text.reading {
+    transition: background-size 0.15s linear, filter 0.3s ease;
   }
   .section-card.testo .section-body .p-wrap .orig-text.blurred {
     filter: blur(8px);
@@ -911,6 +917,12 @@ async function getAudioData(key, type) {
     if (currentParaAudio) {
       currentParaAudio.pause();
       if (currentParaBtn) { currentParaBtn.classList.remove('playing'); }
+      // Reset reading progress overlay
+      const pWrap = currentParaBtn ? currentParaBtn.closest('.p-wrap') : null;
+      if (pWrap) {
+        const os = pWrap.querySelector('.orig-text');
+        if (os) { os.classList.remove('reading'); os.style.backgroundSize = '0% 100%'; }
+      }
       currentParaAudio = null; currentParaBtn = null;
     }
     if (fullAudio) {
@@ -1067,6 +1079,11 @@ async function getAudioData(key, type) {
     const seq = ++playSeq;
     stopAllAudio();
     
+    // Get paragraph wrapper for progress tracking
+    const wrap = btn.closest('.p-wrap');
+    const origSpan = wrap ? wrap.querySelector('.orig-text') : null;
+    let animFrame = null;
+    
     const data = await getAudioData(idx, 'para');
     if (seq !== playSeq) return;
     if (!data || !data.b64) return;
@@ -1076,15 +1093,39 @@ async function getAudioData(key, type) {
     currentParaBtn = btn;
     btn.classList.add('playing');
     
+    if (origSpan) origSpan.classList.add('reading');
+    
+    // Sync reading progress with audio
+    function updateProgress() {
+      if (!audio || audio.paused) return;
+      const pct = Math.min(audio.currentTime / (audio.duration || 1), 1);
+      if (origSpan) {
+        origSpan.style.backgroundSize = (pct * 100) + '% 100%';
+      }
+      animFrame = requestAnimationFrame(updateProgress);
+    }
+    animFrame = requestAnimationFrame(updateProgress);
+    
+    function resetProgress() {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      if (origSpan) {
+        origSpan.classList.remove('reading');
+        origSpan.style.backgroundSize = '0% 100%';
+      }
+    }
+    
     audio.onended = () => {
+      resetProgress();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     };
     audio.onerror = () => {
+      resetProgress();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     };
     audio.play().catch(() => {
+      resetProgress();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     });
