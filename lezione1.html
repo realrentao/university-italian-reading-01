@@ -671,11 +671,17 @@
     display: inline;
     transition: filter 0.35s ease;
   }
-  .section-card.testo .section-body .p-wrap .orig-text p {
-    background-repeat: no-repeat;
-    background-size: 0% 100%;
-    background-image: linear-gradient(to right, rgba(0,146,70,0.12), rgba(0,146,70,0.12));
-    transition: background-size 0.15s linear;
+  .section-card.testo .section-body .p-wrap .orig-text .word-span {
+    transition: background-color 0.12s ease, color 0.12s ease;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+  .section-card.testo .section-body .p-wrap .orig-text .word-span.active {
+    background: rgba(0,146,70,0.25);
+    color: #005A28;
+  }
+  .section-card.testo .section-body .p-wrap .orig-text .word-span.done {
+    background: rgba(0,146,70,0.08);
   }
   .section-card.testo .section-body .p-wrap .orig-text.blurred {
     filter: blur(8px);
@@ -918,11 +924,10 @@ async function getAudioData(key, type) {
     if (currentParaAudio) {
       currentParaAudio.pause();
       if (currentParaBtn) { currentParaBtn.classList.remove('playing'); }
-      // Reset reading progress overlay
+      // Reset word highlighting
       const pWrap = currentParaBtn ? currentParaBtn.closest('.p-wrap') : null;
       if (pWrap) {
-        const p = pWrap.querySelector('.orig-text p');
-        if (p) { p.style.backgroundSize = '0% 100%'; }
+        pWrap.querySelectorAll('.word-span').forEach(el => el.classList.remove('active', 'done'));
       }
       currentParaAudio = null; currentParaBtn = null;
     }
@@ -1080,51 +1085,71 @@ async function getAudioData(key, type) {
     const seq = ++playSeq;
     stopAllAudio();
     
-    // Get paragraph wrapper for progress tracking
     const wrap = btn.closest('.p-wrap');
-    const origSpan = wrap ? wrap.querySelector('.orig-text') : null;
-    const paraEl = origSpan ? origSpan.querySelector('p') : null;
+    const paraEl = wrap ? wrap.querySelector('.orig-text p') : null;
     let animFrame = null;
+    let wordCount = 0;
     
     const data = await getAudioData(idx, 'para');
     if (seq !== playSeq) return;
     if (!data || !data.b64) return;
+    
+    // Split paragraph text into individual words for highlighting
+    if (paraEl) {
+      const text = paraEl.innerText || paraEl.textContent;
+      const words = text.match(/\S+\s*/g) || [text];
+      wordCount = words.length;
+      // Wrap each word in a span
+      paraEl.innerHTML = words.map((w, i) =>
+        `<span class="word-span" data-wi="${i}">${w}</span>`
+      ).join('');
+      // Mark all as dimmed initially
+      paraEl.querySelectorAll('.word-span').forEach(el => el.classList.add('done'));
+    }
     
     const audio = playFromB64(data.b64, paraSpeed);
     currentParaAudio = audio;
     currentParaBtn = btn;
     btn.classList.add('playing');
     
-    // Sync reading progress with audio
-    function updateProgress() {
-      if (!audio || audio.paused) return;
-      const pct = Math.min(audio.currentTime / (audio.duration || 1), 1);
+    // Word-by-word highlighting synced with audio
+    function updateWords() {
+      if (!audio || audio.paused || !wordCount) return;
+      const pct = audio.currentTime / (audio.duration || 1);
+      const activeIdx = Math.min(Math.floor(pct * wordCount), wordCount - 1);
+      
       if (paraEl) {
-        paraEl.style.backgroundSize = (pct * 100) + '% 100%';
+        const words = paraEl.querySelectorAll('.word-span');
+        words.forEach((el, i) => {
+          el.classList.toggle('done', i <= activeIdx - 1);
+          el.classList.toggle('active', i === activeIdx);
+        });
       }
-      animFrame = requestAnimationFrame(updateProgress);
+      animFrame = requestAnimationFrame(updateWords);
     }
-    animFrame = requestAnimationFrame(updateProgress);
+    animFrame = requestAnimationFrame(updateWords);
     
-    function resetProgress() {
+    function resetWords() {
       if (animFrame) cancelAnimationFrame(animFrame);
       if (paraEl) {
-        paraEl.style.backgroundSize = '0% 100%';
+        paraEl.querySelectorAll('.word-span').forEach(el => {
+          el.classList.remove('active', 'done');
+        });
       }
     }
     
     audio.onended = () => {
-      resetProgress();
+      resetWords();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     };
     audio.onerror = () => {
-      resetProgress();
+      resetWords();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     };
     audio.play().catch(() => {
-      resetProgress();
+      resetWords();
       if (currentParaAudio === audio) { currentParaAudio = null; currentParaBtn = null; }
       finishAudio(audio, btn);
     });
