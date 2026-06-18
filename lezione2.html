@@ -754,54 +754,7 @@
   }
 
   /* ===== RESPONSIVE ===== */
-  
-  .ex4-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 24px;
-  }
-  .ex4-grid-2col .ex-item {
-    margin-bottom: 0;
-    background: #F8F9F8;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 3px solid var(--ita-green);
-  }
-  .ex4-grid-2col .ex-item .ex-q {
-    margin-bottom: 6px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  .frase-grid-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 30px;
-    padding-left: 0;
-    list-style-position: inside;
-    font-size: 16px;
-    line-height: 1.8;
-  }
-  .frase-grid-2col li { padding: 2px 0; }
-  .frase-grid-2col .frase-word {
-    font-family: 'Times New Roman', 'Georgia', serif;
-    font-weight: 600;
-    color: #1A3A2A;
-  }
-  .ex4-textarea {
-    width: 100%; padding: 12px; border: 1px solid #D0D0D0;
-    border-radius: 6px; font-family: 'Times New Roman', 'Georgia', serif;
-    font-size: 16px; line-height: 1.6; resize: vertical; margin-top: 8px;
-  }
-  .ex4-textarea:focus {
-    outline: none; border-color: var(--ita-green);
-    box-shadow: 0 0 0 2px rgba(0,146,70,0.15);
-  }
-  .ex4-desc { font-size: 15px; color: #555; margin-bottom: 4px; }
   @media (max-width: 768px) {
-    .ex4-grid-2col { grid-template-columns: 1fr; }
-    .frase-grid-2col { grid-template-columns: 1fr; }
-  }
-@media (max-width: 768px) {
     .book-header { padding: 24px 20px 0; }
     .unit-banner { padding: 0 20px; }
     .unit-banner .inner { padding: 24px 24px; }
@@ -814,6 +767,17 @@
     .vocab-grid { grid-template-columns: 1fr; }
     .section-card.testo .section-body { font-size: 19px; }
   }
+
+  .ex4-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+  .ex4-grid-2col .ex-item { margin-bottom: 0; background: #F8F9F8; padding: 12px 16px; border-radius: 8px; border-left: 3px solid var(--ita-green); }
+  .ex4-grid-2col .ex-item .ex-q { margin-bottom: 6px; font-size: 15px; line-height: 1.5; }
+  .frase-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 30px; padding-left: 0; list-style-position: inside; font-size: 16px; line-height: 1.8; }
+  .frase-grid-2col li { padding: 2px 0; }
+  .frase-grid-2col .frase-word { font-family: 'Times New Roman', 'Georgia', serif; font-weight: 600; color: #1A3A2A; }
+  .ex4-textarea { width: 100%; padding: 12px; border: 1px solid #D0D0D0; border-radius: 6px; font-family: 'Times New Roman', 'Georgia', serif; font-size: 16px; line-height: 1.6; resize: vertical; margin-top: 8px; }
+  .ex4-textarea:focus { outline: none; border-color: var(--ita-green); box-shadow: 0 0 0 2px rgba(0,146,70,0.15); }
+  .ex4-desc { font-size: 15px; color: #555; margin-bottom: 4px; }
+  @media (max-width: 768px) { .ex4-grid-2col { grid-template-columns: 1fr; } .frase-grid-2col { grid-template-columns: 1fr; } }
 </style>
 <script>
 // ===== Individual Audio File Loader =====
@@ -1270,7 +1234,7 @@ async function getAudioData(key, type) {
       <h2>课文 Testo</h2>
       <span class="sub-label">LA STIPSI DI GODOT</span>
     </div>
-    <div class="section-body">
+    <div<div class="section-body">
       <div class="p-wrap"><span class="orig-text"><p>C'erano una mamma, un papà, e Alessio.</p></span>
         <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '0')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '0')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
         <div class="trans-box">从前有一对父母，还有他们的儿子亚历山德罗。</div>
@@ -1447,31 +1411,65 @@ async function getAudioData(key, type) {
         <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '43')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '43')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
         <div class="trans-box">事实上，从那以后再也没有发生过：从那天起，爸爸妈妈在洗手间里一分钟都不敢多待。而且如果亚历山德罗偶尔为了好玩说要进去，不管他们在做什么，都会立刻冲出来——被那可怕的、无法治愈的戈多便秘症吓得魂不附体。</div>
       </div>
-    </div></section>
-
-  <!-- ====== ESERCIZI ====== -->
+    </div><!-- ====== VOCABOLARIO ====== -->
+  <section class="section-card vocab" id="vocabolario">
+    <div class="section-header">
+      <div class="icon">&#128214;</div>
+      <h2>单词表 Vocabolario</h2>
+      <span class="sub-label">PAROLE &amp; ESPRESSIONI</span>
+    </div>
+    <div<div class="section-body">
+    <div class="vocab-grid">
+      <div class="vocab-item"><div class="it">stipsi</div><div class="pos">s.f.</div><div class="cn">便秘</div></div>
+      <div class="vocab-item"><div class="it">depilarsi</div><div class="pos">v.rifl.</div><div class="cn">脱毛</div></div>
+      <div class="vocab-item"><div class="it">corrugare</div><div class="pos">v.tr.</div><div class="cn">弄瘻；使起波纹</div></div>
+      <div class="vocab-item"><div class="it">perbacco</div><div class="pos">inter.</div><div class="cn">惊讶、否定</div></div>
+      <div class="vocab-item"><div class="it">tastare</div><div class="pos">v.tr.</div><div class="cn">触摸，摸</div></div>
+      <div class="vocab-item"><div class="it">patologia</div><div class="pos">s.f.</div><div class="cn">病理学</div></div>
+      <div class="vocab-item"><div class="it">minaccioso</div><div class="pos">agg.</div><div class="cn">可怕的</div></div>
+      <div class="vocab-item"><div class="it">incurabile</div><div class="pos">agg.</div><div class="cn">不治之症</div></div>
+    </div>
+    </div><!-- ====== NOTE ====== -->
+  <section class="section-card note" id="note">
+    <div class="section-header">
+      <div class="icon">&#128221;</div>
+      <h2>注释 Note</h2>
+      <span class="sub-label">ANNOTAZIONI GRAMMATICALI</span>
+    </div>
+    <div<div class="section-body">
+      <div class="note-item"><div class="note-num">1</div><div class="note-content"><div class="expr">Godot</div><div class="expl">人名戈多（《等待戈多》是荒诞派戏剧，戈多自始至终未露面）</div></div></div>
+      <div class="note-item"><div class="note-num">2</div><div class="note-content"><div class="expr">per non parlare di</div><div class="expl">更不用说<br>例：Per dimagrire, non mangia la carne, per non parlare del formaggio.</div></div></div>
+      <div class="note-item"><div class="note-num">3</div><div class="note-content"><div class="expr">mi scappa</div><div class="expl">我想小便（口语）</div></div></div>
+      <div class="note-item"><div class="note-num">4</div><div class="note-content"><div class="expr">prima che</div><div class="expl">在……之前（时间从句用虚拟式）<br>例：Vado alla stazione prima che lui arrivi.</div></div></div>
+      <div class="note-item"><div class="note-num">5</div><div class="note-content"><div class="expr">corrugare la fronte</div><div class="expl">皱眉头</div></div></div>
+      <div class="note-item"><div class="note-num">6</div><div class="note-content"><div class="expr">da qlcu.</div><div class="expl">在某人那里<br>例：Venite da me per la cena.</div></div></div>
+      <div class="note-item"><div class="note-num">7</div><div class="note-content"><div class="expr">in privato</div><div class="expl">私下地</div></div></div>
+      <div class="note-item"><div class="note-num">8</div><div class="note-content"><div class="expr">mettersi d'accordo</div><div class="expl">达成协议<br>例：Si sono messe d’accordo sul prezzo.</div></div></div>
+      <div class="note-item"><div class="note-num">9</div><div class="note-content"><div class="expr">soffrire di</div><div class="expl">患病<br>例：soffrire di cancro</div></div></div>
+      <div class="note-item"><div class="note-num">10</div><div class="note-content"><div class="expr">fare i propri bisogni</div><div class="expl">解手</div></div></div>
+      <div class="note-item"><div class="note-num">11</div><div class="note-content"><div class="expr">rossa in faccia</div><div class="expl">脸红</div></div></div>
+      <div class="note-item"><div class="note-num">12</div><div class="note-content"><div class="expr">di corsa</div><div class="expl">迅速地<br>例：Bisogna parlare di corsa.</div></div></div>
+    </div><!-- ====== ESERCIZI ====== -->
   <section class="section-card esercizi" id="esercizi">
     <div class="section-header">
       <div class="icon">&#9997;</div>
-      <div>
-        <h2>Esercizi</h2>
-        <p class="sub">练 习</p>
-      </div>
+      <h2>练习 Esercizi</h2>
+      <span class="sub-label">COMPRENSIONE &amp; PRODUZIONE</span>
     </div>
-<div class="section-body">
+    <div<div class="section-body">
       <div class="ex4-section">
         <h4 class="ex4-title">1. Scegliere le frasi giuste secondo il testo</h4>
 <div class="ex4-grid-2col">
-  <div class="ex-item"><p class="ex-q">1. Alessio poteva usare il bagno quando voleva.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">2. La mamma e il papà si fermavano in bagno molto più del necessario.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">3. Quando il bambino chiedeva l'uso del bagno, i suoi rispondevano di no.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">4. Un giorno dopo aver avuto la solita risposta dalla mamma Alessio andò dal portiere per il bisogno.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">5. La signora Bice non era d'accordo con Alessio.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">6. Al ritorno dalla casa della signora Bice il bambino non chiese più l'uso del bagno ai genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">7. La mamma e il papà presero la decisione di portare il bambino dal medico.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">8. Alessio raccontò tutta la storia al medico in presenza dei genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">9. Il dottore rivelò il segreto di Alessio ai suoi genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">10. D'allora in poi la mamma e il papà non osavano più di rimanere ancora in bagno quando il bambino chiedeva di entrare.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
+  <div class="ex-item"><p class="ex-q">1. Alessio poteva usare il bagno quando voleva.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">2. La mamma e il papà si fermavano in bagno molto più del necessario.</p><button class="btn-answer" onclick="toggleAnswer(this,'Vero')">答案</button><div class="answer-box">Vero</div></div>
+  <div class="ex-item"><p class="ex-q">3. Qd il bambino chiedeva l'uso del bagno, i suoi rispondevano di no.</p><button class="btn-answer" onclick="toggleAnswer(this,'Vero')">答案</button><div class="answer-box">Vero</div></div>
+  <div class="ex-item"><p class="ex-q">4. Un giorno Alessio andò dal portiere per il bisogno.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">5. La signora Bice non era d'accordo con Alessio.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">6. Al ritorno il bambino non chiese più ai genitori.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">7. I genitori portarono il bambino dal medico.</p><button class="btn-answer" onclick="toggleAnswer(this,'Vero')">答案</button><div class="answer-box">Vero</div></div>
+  <div class="ex-item"><p class="ex-q">8. Alessio raccontò tutto al medico in presenza dei genitori.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">9. Il dottore rivelò il segreto ai genitori.</p><button class="btn-answer" onclick="toggleAnswer(this,'Falso')">答案</button><div class="answer-box">Falso</div></div>
+  <div class="ex-item"><p class="ex-q">10. D'allora i genitori non osavano rimanere in bagno.</p><button class="btn-answer" onclick="toggleAnswer(this,'Vero')">答案</button><div class="answer-box">Vero</div></div>
 </div>      </div>
       <hr class="ex4-divider">
       <div class="ex4-section">
@@ -1509,407 +1507,31 @@ async function getAudioData(key, type) {
         <h4 class="ex4-title">4. Leggere il testo e tradurre in cinese</h4>
         <div class="trans-text">
           <p><strong>Il devoto di San Giuseppe</strong></p>
-          <p>C'era uno che era devoto di San Giuseppe e basta. A San Giuseppe diceva tutte le orazioni, a San Giuseppe accendeva il cero, per San Giuseppe faceva le elemosine, insomma non vedeva altro che San Giuseppe. Viene il giorno che muore e si presenta a San Pietro. San Pietro non voleva riceverlo, perché tutto quel che aveva fatto di buono nella vita era stato di pregare per San Giuseppe. Di buone azioni, niente; e il Signore, la Madonna e gli altri Santi, come se per lui non esistessero.</p>
-          <p>— Giacché sono venuto fin qua, — disse il devoto di San Giuseppe, — lasciate almeno che lo veda.</p>
-          <p>E San Pietro mandò a chiamare San Giuseppe. San Giuseppe venne e appena vide quel suo devoto, fece:</p>
-          <p>— Ma bravo, sono proprio contento di averti con noi. Vieni, vieni dentro.</p>
+          <p>C'era uno che era devoto di San Giuseppe e basta. A San Giuseppe diceva tutte le orazioni... Viene il giorno che muore e si presenta a San Pietro. San Pietro non voleva riceverlo. Di buone azioni, niente.</p>
+          <p>— Giacché sono venuto fin qua, — disse il devoto, — lasciate almeno che lo veda.</p>
+          <p>San Pietro mandò a chiamare San Giuseppe. San Giuseppe venne: — Ma bravo, sono proprio contento di averti con noi. Vieni dentro.</p>
           <p>— Non posso, c'è quello là che non vuole.</p>
-          <p>— E perché?</p>
-          <p>— Perché dice che ho pregato solo voi, e non gli altri Santi.</p>
           <p>— Ah, figuriamoci, cos'importa, vieni dentro lo stesso.</p>
-          <p>Ma San Pietro si ostinò che non lo voleva. Ne nacque un gran battibecco e alla fine San Giuseppe disse a San Pietro:</p>
-          <p>— Oh, insomma, o lo lasci entrare, o io mi prendo su mia moglie e il mio bambino e vado a impiantare il Paradiso da un'altra parte.</p>
-          <p>Sua moglie era la Madonna, il suo bambino era Nostro Signore. San Pietro pensò meglio di cedere e di lasciare entrare il devoto di San Giuseppe.</p>
+          <p>Ma San Pietro si ostinò. Ne nacque un gran battibecco e alla fine San Giuseppe disse: — Oh, insomma, o lo lasci entrare, o io mi prendo su mia moglie e il mio bambino e vado altrove.” Sua moglie era la Madonna, il bambino Nostro Signore. San Pietro pensò meglio di cedere.</p>
         </div>
         <h4 class="ex4-title" style="margin-top:16px">Vocabolario补充词汇</h4>
 <div class="vocab-grid" style="margin-top:16px">
   <div class="vocab-item"><div class="it">devoto</div><div class="pos">s.m.</div><div class="cn">诚心的教徒</div></div>
   <div class="vocab-item"><div class="it">basta</div><div class="pos">inter.</div><div class="cn">够了</div></div>
   <div class="vocab-item"><div class="it">orazione</div><div class="pos">s.f.</div><div class="cn">祈告</div></div>
-  <div class="vocab-item"><div class="it">cero</div><div class="pos">s.m.</div><div class="cn">大蜡烛</div></div>
+  <div class="vocab-item"><div class="it">cero</div><div class="pos">s.m.</div><div class="cn">蜡烛</div></div>
   <div class="vocab-item"><div class="it">elemosina</div><div class="pos">s.f.</div><div class="cn">布施</div></div>
   <div class="vocab-item"><div class="it">ostinarsi</div><div class="pos">v.rifl.</div><div class="cn">坚持</div></div>
   <div class="vocab-item"><div class="it">battibecco</div><div class="pos">s.m.</div><div class="cn">争吵</div></div>
   <div class="vocab-item"><div class="it">impiantare</div><div class="pos">v.tr.</div><div class="cn">建立</div></div>
 </div>        <div class="ex4-section" style="margin-top:20px">
           <h4 class="ex4-title">参考译文</h4>
-          <button class="btn-trans-full" onclick="toggleFullTranslation(this)">
-            <span class="arrow">&#9654;</span> 显示参考译文
-          </button>
+          <button class="btn-trans-full" onclick="toggleFullTranslation(this)"><span class="arrow">&#9654;</span> 显示参考译文</button>
           <div class="ex4-translation">
-            <p>圣朱塞佩的信徒</p>
-            <p>有一个人，他只是圣朱塞佩的信徒。他对圣朱塞佩念所有的祈文，为圣朱塞佩点燃蜡烛，为圣朱塞佩施舍布施——总之，他眼里只有圣朱塞佩。终于有一天他死了。</p>
-            <p>“既然我都到这儿了，”圣朱塞佩的信徒说，“至少让我见见他吧。”</p>
-            <p>圣彼得便派人去叫圣朱塞佩。圣朱塞佩来了，一看到他的那位信徒，就说：</p>
-            <p>“好啊，我真高兴你来到我们这儿。来吧，进来。”</p>
-            <p>“不行，那边那位不让。”</p>
-            <p>“为什么？”</p>
-            <p>“因为他说我只向你们祈祷，没向其他圣徒祈祷。”</p>
-            <p>“哎呀，那有什么关系，照样进来吧。”</p>
-            <p>但圣彼得坚持不肯放他进去。于是两人大吵起来，最后圣朱塞佩对圣彼得说：</p>
-            <p>“好吧，要么你让他进去，要么我带着我的妻子和孩子，去别处另建一个天堂。”</p>
-            <p>他的妻子是圣母，他的孩子是我们的主。圣彼得想了想，还是让步了。</p>
+            <p>有一个人只是圣朱塞佩的信徒。他对圣朱塞佩念所有的祈文，点燃蜡烛，施舍布施——眼里只有圣朱塞佩。终于死了，来到圣彼得面前。圣彼得不愿收他。</p>
+            <p>“既然我都到这儿了，”他说，“至少让我见见他吧。” 圣彼得便去叫圣朱塞佩。</p>
+            <p>“好啊，进来吧。” “不行，那边不让。” “哎呀，那有什么关系。” 但圣彼得坚持不肯。最后圣朱塞佩说：“要么你让他进去，要么我带着妻子和孩子去别处建天堂。” 圣彼得只好让步了。</p>
           </div>
         </div>
       </div>
-    </div>
-  </section><!-- ===== BOTTOM LESSON NAV ===== -->
-<nav class="lesson-nav bottom">
-  <a href="index.html" class="back">
-    <svg viewBox="0 0 24 24"><polygon points="15,3 7,12 15,21" transform="scale(-1,1) translate(-22,0)"/></svg>
-    返回导航页
-  </a>
-  <a href="#" class="next disabled">
-    下一课
-    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-  </a>
-</nav>
-
-<!-- ===== FOOTER ===== -->
-<footer class="page-footer">
-  <div class="flag">
-    <span class="g"></span>
-    <span class="w"></span>
-    <span class="r"></span>
-  </div>
-  <p>大学意大利语阅读教程 1 · 外语教学与研究出版社</p>
-  <p>Unita 1 &mdash; La stipsi di Godot &middot; Testo 2</p>
-</footer>
-
-<script>
-  // Scroll-based active nav highlight
-  const sections = document.querySelectorAll('.section-card');
-  const navLinks = document.querySelectorAll('.ribbon-nav a');
-
-  function updateActiveNav() {
-    let current = '';
-    sections.forEach(s => {
-      const top = s.getBoundingClientRect().top;
-      if (top < 200) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav();
-
-  // Smooth scroll
-  navLinks.forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const id = a.getAttribute('href').substring(1);
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-</script>
-
-</body>
-</html><div class="section-body">
-      <div class="p-wrap"><span class="orig-text"><p>C'erano una mamma, un papà, e Alessio.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '0')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '0')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">从前有一对父母，还有他们的儿子亚历山德罗。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Il problema era che, quando Alessio doveva andare in bagno, il bagno era sempre occupato. La mamma si pettinava, il papà si radeva, la mamma si truccava, il papà faceva la doccia, lei si depilava, lui si tagliava le unghie, per non parlare dei bisogni fondamentali.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '1')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '1')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">问题在于，每当亚历山德罗要上厕所的时候，洗手间总是被占着。妈妈在梳头，爸爸在刮胡子，妈妈在化妆，爸爸在淋浴，她在脱毛，他在剪指甲，更不用说那些“基本需求”了。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Mamma, mi scappa?</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '2')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '2')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“妈妈，我憋不住了！”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Un momento solo, tesoro!</span> <span class="attr">Ma era un momento molto, molto lungo.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '3')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '3')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“再等一下，宝贝！”——可这一下却非常非常漫长。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Papà, devo entrare.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '4')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '4')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“爸爸，我要进去。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Esco subito!</span> <span class="attr">Bugia.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '5')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '5')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“马上出来！”——撒谎。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Un giorno, dopo aver chiesto come al solito l'uso del bagno, e aver sentito la solita risposta dalla mamma, Alessio ebbe un'idea.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '6')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '6')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">有一天，在像往常一样请求使用洗手间、并听到了妈妈同样的回答之后，亚历山德罗有了一个主意。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Uscì di casa, e bussò alla porta della signora Bice, che abitava nell'appartamento di fronte, ed era un'amica.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '7')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '7')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">他走出家门，敲了敲比切太太的门——她就住在对面公寓，是他家的朋友。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Signora Bice, posso usare il suo bagno?</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '8')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '8')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“比切太太，我能用一下您的洗手间吗？”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Ma sicuro, entra!</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '9')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '9')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“当然可以，进来吧！”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Alessio usò il bagno, poi disse:</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '10')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '10')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">亚历山德罗用完洗手间后说：</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Signora Bice, posso venire qualche volta, in bagno? Solo per una settimana. Però non lo deve dire ai miei genitori: è uno scherzo.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '11')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '11')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“比切太太，我能偶尔来您这儿上个洗手间吗？就一个星期。不过请您别告诉我爸妈——这是个玩笑。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Va bene.</span> <span class="attr">disse la signora Bice, che era scherzosa.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '12')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '12')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“好吧。”——比切太太说，她是个爱开玩笑的人。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Alessio tornò in casa. Poco dopo la mamma uscì dal bagno.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '13')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '13')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">亚历山德罗回到家里。过了一会儿妈妈从洗手间出来了。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Ecco, tesoro, è libero.</span> <span class="attr">disse.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '14')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '14')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“好了，宝贝，洗手间空了。”——她说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Non importa, mamma, non mi scappa più.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '15')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '15')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“没关系，妈妈，我现在不急了。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>La mamma lo guardò perplessa.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '16')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '16')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">妈妈疑惑地看着他。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Alla sera, come al solito:</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '17')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '17')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">到了晚上，照常：</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Papà, devo entrare in bagno.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '18')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '18')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“爸爸，我要进洗手间。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Esco fra un attimo!</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '19')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '19')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“马上就好！”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Alessio scappò dalla signora Bice, e tornò poco dopo, appena prima che il papà uscisse.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '20')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '20')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">亚历山德罗溜到比切太太家，很快就回来了，正好赶在爸爸出来之前。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Bagno libero!</span> <span class="attr">disse il papà.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '21')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '21')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“洗手间空了！”——爸爸说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Non importa, non mi scappa più.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '22')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '22')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“没关系，我不急了。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Il papà lo guardò, e la cosa finì lì.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '23')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '23')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">爸爸看了看他，事情就这样过去了。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Il giorno dopo, lo stesso: quando la mamma o il papà uscivano dal bagno, Alessio diceva di non averne più bisogno.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '24')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '24')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">第二天同样如此：每当妈妈或爸爸从洗手间出来，亚历山德罗就说自己不再需要了。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>I genitori corrugarono la fronte, e discussero la cosa.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '25')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '25')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">父母皱起了眉头，商量了这件事。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Il giorno dopo portarono Alessio da Gavazzi, medico di famiglia.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '26')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '26')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">第二天，他们把亚历山德罗带到了家庭医生加瓦齐那里。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Alessio non va più in bagno.</span> <span class="attr">dissero preoccupati.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '27')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '27')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“亚历山德罗再不上洗手间了。”——他们担忧地说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Perbacco!</span> <span class="attr">disse Gavazzi.</span> <span class="dq">Ora vediamo.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '28')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '28')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“天哪！”——加瓦齐说——“让我看看。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Cominciò a tastare Alessio, e a fargli domande.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '29')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '29')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">他开始给亚历山德罗做检查，并问他问题。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Mi vergogno a rispondere davanti a papà e mamma.</span> <span class="attr">disse Alessio.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '30')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '30')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“在爸爸妈妈面前我不好意思回答。”——亚历山德罗说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Papà e mamma si guardarono.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '31')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '31')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">爸爸妈妈互相看了看。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Signori, il paziente vuole comunicare con me in privato.</span> <span class="attr">disse Gavazzi.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '32')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '32')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“各位，病人想和我私下交流。”——加瓦齐说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Quando furono soli Alessio raccontò tutta la storia, e siccome Gavazzi era anche più scherzoso della signora Bice, si misero d'accordo.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '33')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '33')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">当只剩下他们两个人时，亚历山德罗把整个故事都说了出来。而加瓦齐比切太太还要爱开玩笑，两人很快就达成了共识。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Quando i genitori rientrarono, il dottore disse, serio serio:</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '34')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '34')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">当父母回来时，医生一脸严肃地说：</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Il bambino soffre di stipsi di Godot.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '35')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '35')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“这孩子患的是戈多便秘症。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Stipsi di Godot?</span> <span class="attr">chiese la mamma, spaventata.</span> <span class="dq">Cos'&egrave;?</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '36')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '36')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“戈多便秘症？”——妈妈惊恐地问——“那是什么？”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">È una patologia rara. Capita a certe persone, quando devono attendere prima di fare i loro bisogni.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '37')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '37')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“这是一种罕见的病理状况。在某些人需要等待才能解决生理需求时会发生。”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Santo cielo!</span> <span class="attr">disse il papà.</span> <span class="dq">E come si cura?</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '38')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '38')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“天哪！”——爸爸说——“这怎么治？”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Non c'&egrave; cura, purtroppo. Se il bambino aspetta più di un minuto, può ritornargli la stipsi di Godot: anche per sempre!</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '39')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '39')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“很遗憾，无药可治。如果孩子等待超过一分钟，他的戈多便秘症就可能复发——甚至永远无法治愈！”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">Vuol dire che... rimarrebbe tutta la vita senza fare cacca o pipì?</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '40')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '40')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“你的意思是说……他这辈子都不能再拉屎或撒尿了？”</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">È possibile.</span> <span class="attr">disse Gavazzi.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '41')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '41')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“有可能。”——加瓦齐说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p class="dialogue-line"><span class="dq">No, non succederà!</span> <span class="attr">disse la mamma, rossa in faccia.</span></p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '42')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '42')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">“不，绝不会的！”——妈妈脸红着说。</div>
-      </div>
-      <div class="p-wrap"><span class="orig-text"><p>Infatti non successe più: da quel giorno mamma e papà smisero di fermarsi in bagno un secondo più del necessario, e se qualche volta, per divertirsi, Alessio chiedeva di entrare, qualunque cosa stessero facendo uscivano di corsa, terrorizzati dalla minacciosa, incurabile stipsi di Godot.</p></span>
-        <div class="trans-bar"><button class="para-btn" onclick="playPara(this, '43')" title="播放本段"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button><button class="speed-p-btn" onclick="setParaSpeed(this, 0.7)">0.7×</button><button class="speed-p-btn active" onclick="setParaSpeed(this, 1.0)">1.0×</button><button class="speed-p-btn" onclick="setParaSpeed(this, 1.3)">1.3×</button><button class="btn-trans" onclick="toggleTrans(this, '43')">译文</button><button class="btn-trans btn-orig" onclick="toggleOrig(this)">原文</button></div>
-        <div class="trans-box">事实上，从那以后再也没有发生过：从那天起，爸爸妈妈在洗手间里一分钟都不敢多待。而且如果亚历山德罗偶尔为了好玩说要进去，不管他们在做什么，都会立刻冲出来——被那可怕的、无法治愈的戈多便秘症吓得魂不附体。</div>
-      </div>
-    </div><div class="section-body">
-    <div class="vocab-grid">
-      <div class="vocab-item"><div class="it">stipsi</div><div class="pos">s.f.</div><div class="cn">便秘</div></div>
-      <div class="vocab-item"><div class="it">depilarsi</div><div class="pos">v.rifl.</div><div class="cn">脱毛</div></div>
-      <div class="vocab-item"><div class="it">corrugare</div><div class="pos">v.tr.</div><div class="cn">弄瘻；使起波纹</div></div>
-      <div class="vocab-item"><div class="it">perbacco</div><div class="pos">inter.</div><div class="cn">表示惊讶、否定等</div></div>
-      <div class="vocab-item"><div class="it">tastare</div><div class="pos">v.tr.</div><div class="cn">触摸，摸</div></div>
-      <div class="vocab-item"><div class="it">patologia</div><div class="pos">s.f.</div><div class="cn">病理学</div></div>
-      <div class="vocab-item"><div class="it">minaccioso</div><div class="pos">agg.</div><div class="cn">令人害怕的，可怕的</div></div>
-      <div class="vocab-item"><div class="it">incurabile</div><div class="pos">agg.</div><div class="cn">无法治愈的，无法治疗的</div></div>
-    </div>
-    </div><div class="section-body">
-      <div class="note-item"><div class="note-num">1</div><div class="note-content"><div class="expr">Godot</div><div class="expl">人名戈多（《等待戈多》是戏剧史上真正的革新，也是第一部演出成功的荒诞派戏剧。戈多在剧中是一个自始至终都没有露面的人物，这里采用人名戈多，意味着这种“戈多便秘症”也是不存在的。）</div></div></div>
-      <div class="note-item"><div class="note-num">2</div><div class="note-content"><div class="expr">per non parlare di</div><div class="expl">更不用说<br>例：Per dimagrire, non mangia la carne, per non parlare del formaggio. 为了减肥她连肉都不吃，更不用说奶酪了。</div></div></div>
-      <div class="note-item"><div class="note-num">3</div><div class="note-content"><div class="expr">mi scappa</div><div class="expl">我想小便（用于口语中，也可完整地说为 mi scappa la pipì）</div></div></div>
-      <div class="note-item"><div class="note-num">4</div><div class="note-content"><div class="expr">prima che</div><div class="expl">在……之前（后面引导的时间从句中须使用虚拟式）<br>例：Vado alla stazione prima che lui arrivi a casa. 在他到家前我得去车站。</div></div></div>
-      <div class="note-item"><div class="note-num">5</div><div class="note-content"><div class="expr">corrugare la fronte</div><div class="expl">皱眉头，蹄额</div></div></div>
-      <div class="note-item"><div class="note-num">6</div><div class="note-content"><div class="expr">da qlcu.</div><div class="expl">用在人名或人称代词前，表示“在某人家里，在某人那里”<br>例：Stasera venite da me per la cena. 今晚你们到我家来吃晚饭吧。</div></div></div>
-      <div class="note-item"><div class="note-num">7</div><div class="note-content"><div class="expr">in privato</div><div class="expl">非公开地，私下地，秘密地<br>例：Possiamo parlare in privato? 我们能私下谈谈吗？</div></div></div>
-      <div class="note-item"><div class="note-num">8</div><div class="note-content"><div class="expr">mettersi d'accordo</div><div class="expl">达成协议，取得一致<br>例：Dopo le trattative le due parti si sono messe d’accordo sul prezzo. 通过谈判双方在价格上达成了一致。</div></div></div>
-      <div class="note-item"><div class="note-num">9</div><div class="note-content"><div class="expr">soffrire di</div><div class="expl">患病（后面连用疾病名称）<br>例：soffrire di cancro 患癌症</div></div></div>
-      <div class="note-item"><div class="note-num">10</div><div class="note-content"><div class="expr">fare i propri bisogni</div><div class="expl">解手（bisogno在这里是“大小便”的意思，类似的说法还有 avere un bisogno urgente）</div></div></div>
-      <div class="note-item"><div class="note-num">11</div><div class="note-content"><div class="expr">rossa in faccia</div><div class="expl">脸红（rosso 脸红的，涨红的）</div></div></div>
-      <div class="note-item"><div class="note-num">12</div><div class="note-content"><div class="expr">di corsa</div><div class="expl">迅速地<br>例：Bisogna parlare di corsa per risparmiare il tempo. 得快点说以节省时间。</div></div></div>
-    </div>    <div class="section-body">
-      <div class="ex4-section">
-        <h4 class="ex4-title">1. Scegliere le frasi giuste secondo il testo</h4>
-<div class="ex4-grid-2col">
-  <div class="ex-item"><p class="ex-q">1. Alessio poteva usare il bagno quando voleva.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">2. La mamma e il papà si fermavano in bagno molto più del necessario.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">3. Quando il bambino chiedeva l'uso del bagno, i suoi rispondevano di no.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">4. Un giorno dopo aver avuto la solita risposta dalla mamma Alessio andò dal portiere per il bisogno.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">5. La signora Bice non era d'accordo con Alessio.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">6. Al ritorno dalla casa della signora Bice il bambino non chiese più l'uso del bagno ai genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">7. La mamma e il papà presero la decisione di portare il bambino dal medico.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-  <div class="ex-item"><p class="ex-q">8. Alessio raccontò tutta la storia al medico in presenza dei genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">9. Il dottore rivelò il segreto di Alessio ai suoi genitori.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Falso')">答案</button><div class="answer-box">Falso</div></div>
-  <div class="ex-item"><p class="ex-q">10. D'allora in poi la mamma e il papà non osavano più di rimanere ancora in bagno quando il bambino chiedeva di entrare.</p><button class="btn-answer" onclick="toggleAnswer(this, 'Vero')">答案</button><div class="answer-box">Vero</div></div>
-</div>      </div>
-      <hr class="ex4-divider">
-      <div class="ex4-section">
-        <h4 class="ex4-title">2. Comporre le frasi</h4>
-<ol class="frase-grid-2col">
-  <li><span class="frase-word">truccarsi</span></li>
-  <li><span class="frase-word">per non parlare di</span></li>
-  <li><span class="frase-word">come al solito</span></li>
-  <li><span class="frase-word">bussare alla porta</span></li>
-  <li><span class="frase-word">poco dopo</span></li>
-  <li><span class="frase-word">prima che</span></li>
-  <li><span class="frase-word">lo stesso</span></li>
-  <li><span class="frase-word">avere bisogno di</span></li>
-  <li><span class="frase-word">corrugare la fronte</span></li>
-  <li><span class="frase-word">da qlcu.</span></li>
-  <li><span class="frase-word">vergognarsi</span></li>
-  <li><span class="frase-word">in privato</span></li>
-  <li><span class="frase-word">siccome</span></li>
-  <li><span class="frase-word">mettersi d'accordo</span></li>
-  <li><span class="frase-word">soffrire di</span></li>
-  <li><span class="frase-word">capitare</span></li>
-  <li><span class="frase-word">fare i propri bisogni</span></li>
-  <li><span class="frase-word">vuol dire che</span></li>
-  <li><span class="frase-word">smettere di</span></li>
-  <li><span class="frase-word">di corsa</span></li>
-</ol>      </div>
-      <hr class="ex4-divider">
-      <div class="ex4-section">
-        <h4 class="ex4-title">3. Fare un breve riassunto del testo</h4>
-        <p class="ex4-desc">Scrivi un riassunto di 5-8 frasi che racconti la storia di Alessio e la stipsi di Godot.</p>
-        <textarea class="ex4-textarea" rows="5" placeholder="Scrivi qui il tuo riassunto..."></textarea>
-      </div>
-      <hr class="ex4-divider">
-      <div class="ex4-section">
-        <h4 class="ex4-title">4. Leggere il testo e tradurre in cinese</h4>
-        <div class="trans-text">
-          <p><strong>Il devoto di San Giuseppe</strong></p>
-          <p>C'era uno che era devoto di San Giuseppe e basta. A San Giuseppe diceva tutte le orazioni, a San Giuseppe accendeva il cero, per San Giuseppe faceva le elemosine, insomma non vedeva altro che San Giuseppe. Viene il giorno che muore e si presenta a San Pietro. San Pietro non voleva riceverlo, perché tutto quel che aveva fatto di buono nella vita era stato di pregare per San Giuseppe. Di buone azioni, niente; e il Signore, la Madonna e gli altri Santi, come se per lui non esistessero.</p>
-          <p>— Giacché sono venuto fin qua, — disse il devoto di San Giuseppe, — lasciate almeno che lo veda.</p>
-          <p>E San Pietro mandò a chiamare San Giuseppe. San Giuseppe venne e appena vide quel suo devoto, fece:</p>
-          <p>— Ma bravo, sono proprio contento di averti con noi. Vieni, vieni dentro.</p>
-          <p>— Non posso, c'è quello là che non vuole.</p>
-          <p>— E perché?</p>
-          <p>— Perché dice che ho pregato solo voi, e non gli altri Santi.</p>
-          <p>— Ah, figuriamoci, cos'importa, vieni dentro lo stesso.</p>
-          <p>Ma San Pietro si ostinò che non lo voleva. Ne nacque un gran battibecco e alla fine San Giuseppe disse a San Pietro:</p>
-          <p>— Oh, insomma, o lo lasci entrare, o io mi prendo su mia moglie e il mio bambino e vado a impiantare il Paradiso da un'altra parte.</p>
-          <p>Sua moglie era la Madonna, il suo bambino era Nostro Signore. San Pietro pensò meglio di cedere e di lasciare entrare il devoto di San Giuseppe.</p>
-        </div>
-        <h4 class="ex4-title" style="margin-top:16px">Vocabolario补充词汇</h4>
-<div class="vocab-grid" style="margin-top:16px">
-  <div class="vocab-item"><div class="it">devoto</div><div class="pos">s.m.</div><div class="cn">诚心的教徒</div></div>
-  <div class="vocab-item"><div class="it">basta</div><div class="pos">inter.</div><div class="cn">够了</div></div>
-  <div class="vocab-item"><div class="it">orazione</div><div class="pos">s.f.</div><div class="cn">祈告</div></div>
-  <div class="vocab-item"><div class="it">cero</div><div class="pos">s.m.</div><div class="cn">大蜡烛</div></div>
-  <div class="vocab-item"><div class="it">elemosina</div><div class="pos">s.f.</div><div class="cn">布施</div></div>
-  <div class="vocab-item"><div class="it">ostinarsi</div><div class="pos">v.rifl.</div><div class="cn">坚持</div></div>
-  <div class="vocab-item"><div class="it">battibecco</div><div class="pos">s.m.</div><div class="cn">争吵</div></div>
-  <div class="vocab-item"><div class="it">impiantare</div><div class="pos">v.tr.</div><div class="cn">建立</div></div>
-</div>        <div class="ex4-section" style="margin-top:20px">
-          <h4 class="ex4-title">参考译文</h4>
-          <button class="btn-trans-full" onclick="toggleFullTranslation(this)">
-            <span class="arrow">&#9654;</span> 显示参考译文
-          </button>
-          <div class="ex4-translation">
-            <p>圣朱塞佩的信徒</p>
-            <p>有一个人，他只是圣朱塞佩的信徒。他对圣朱塞佩念所有的祈文，为圣朱塞佩点燃蜡烛，为圣朱塞佩施舍布施——总之，他眼里只有圣朱塞佩。终于有一天他死了，来到圣彼得面前。圣彼得不愿收他，因为他一生所做的全部好事就是向圣朱塞佩祈祷。善事一件也没有；至于主、圣母和其他圣徒，对他来说就像不存在一样。</p>
-            <p>“既然我都到这儿了，”圣朱塞佩的信徒说，“至少让我见见他吧。”</p>
-            <p>圣彼得便派人去叫圣朱塞佩。圣朱塞佩来了，一看到他的那位信徒，就说：</p>
-            <p>“好啊，我真高兴你来到我们这儿。来吧，进来。”</p>
-            <p>“不行，那边那位不让。”</p>
-            <p>“为什么？”</p>
-            <p>“因为他说我只向你们祈祷，没向其他圣徒祈祷。”</p>
-            <p>“哎呀，那有什么关系，照样进来吧。”</p>
-            <p>但圣彼得坚持不肯放他进去。于是两人大吵起来，最后圣朱塞佩对圣彼得说：</p>
-            <p>“好吧，要么你让他进去，要么我带着我的妻子和孩子，去别处另建一个天堂。”</p>
-            <p>他的妻子是圣母，他的孩子是我们的主。圣彼得想了想，还是让步了，让圣朱塞佩的信徒进了天堂。</p>
-          </div>
-        </div>
-      </div>
-    </div><div class="section-body">
-    <div class="vocab-grid">
-      <div class="vocab-item"><div class="it">stipsi</div><div class="pos">s.f.</div><div class="cn">便秘</div></div>
-      <div class="vocab-item"><div class="it">depilarsi</div><div class="pos">v.rifl.</div><div class="cn">脱毛</div></div>
-      <div class="vocab-item"><div class="it">corrugare</div><div class="pos">v.tr.</div><div class="cn">弄瘻；使起波纹</div></div>
-      <div class="vocab-item"><div class="it">perbacco</div><div class="pos">inter.</div><div class="cn">表示惊讶、否定等</div></div>
-      <div class="vocab-item"><div class="it">tastare</div><div class="pos">v.tr.</div><div class="cn">触摸，摸</div></div>
-      <div class="vocab-item"><div class="it">patologia</div><div class="pos">s.f.</div><div class="cn">病理学</div></div>
-      <div class="vocab-item"><div class="it">minaccioso</div><div class="pos">agg.</div><div class="cn">令人害怕的，可怕的</div></div>
-      <div class="vocab-item"><div class="it">incurabile</div><div class="pos">agg.</div><div class="cn">无法治愈的，无法治疗的</div></div>
-    </div>
     </div>
