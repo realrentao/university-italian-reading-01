@@ -937,6 +937,9 @@ async function getAudioData(key, type) {
         fullPlayBtn.classList.remove('playing');
         fullPlayBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> 播放';
       }
+      // Clear full-text word highlights
+      const ts = document.getElementById('testo');
+      if (ts) ts.querySelectorAll('.word-span').forEach(el => el.classList.remove('active', 'done'));
       fullAudio = null;
     }
   }
@@ -1211,22 +1214,108 @@ async function getAudioData(key, type) {
     if (seq !== playSeq) return;
     if (!data || !data.b64) return;
     
+    // Prepare all Testo paragraphs: split into word spans + calculate offsets
+    const testoSect = document.getElementById('testo');
+    const allWraps = testoSect ? testoSect.querySelectorAll('.p-wrap') : [];
+    const paraOffsets = [];  // paraOffsets[i] = global word index where paragraph i starts
+    let totalFullWords = 0;
+    let fullWordTimings = data.words && data.words.length > 0 ? data.words : null;
+    let animFrame = null;
+    
+    allWraps.forEach((wrap, pi) => {
+      const p = wrap.querySelector('.orig-text p');
+      if (!p) { paraOffsets.push(totalFullWords); return; }
+      
+      // Check if already segmented
+      let existing = p.querySelectorAll('.word-span');
+      if (existing.length === 0) {
+        const text = p.innerText || p.textContent;
+        const words = text.match(/\S+\s*/g) || [text];
+        p.innerHTML = words.map((w, i) =>
+          `<span class="word-span" data-wi="${i}">${w}</span>`
+        ).join('');
+        existing = p.querySelectorAll('.word-span');
+      }
+      
+      paraOffsets.push(totalFullWords);
+      totalFullWords += existing.length;
+      existing.forEach(el => el.classList.add('done'));
+    });
+    
+    // Helper: clear all word highlights in Testo section
+    function clearAllHighlights() {
+      if (!testoSect) return;
+      testoSect.querySelectorAll('.word-span').forEach(el => el.classList.remove('active', 'done'));
+    }
+    
     const audio = playFromB64(data.b64, currentSpeed);
     fullAudio = audio;
     btn.classList.add('playing');
     btn.innerHTML = '<svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> 暂停';
     
+    function updateFullWords() {
+      if (!audio || audio.paused || !testoSect) return;
+      let globalWordIdx;
+      
+      if (fullWordTimings) {
+        const current100ns = audio.currentTime * 10000000;
+        globalWordIdx = fullWordTimings.findIndex(w =>
+          current100ns >= w.offset && current100ns < w.offset + w.duration
+        );
+        if (globalWordIdx < 0) {
+          if (fullWordTimings.length > 0 && current100ns >= fullWordTimings[fullWordTimings.length - 1].offset + fullWordTimings[fullWordTimings.length - 1].duration) {
+            globalWordIdx = totalFullWords - 1;
+          } else {
+            globalWordIdx = -1;
+          }
+        }
+      } else {
+        const pct = audio.currentTime / (audio.duration || 1);
+        globalWordIdx = Math.min(Math.floor(pct * totalFullWords), totalFullWords - 1);
+      }
+      
+      // Map global index to paragraph + local word
+      let paraIdx = -1;
+      for (let i = paraOffsets.length - 1; i >= 0; i--) {
+        if (paraOffsets[i] <= globalWordIdx) { paraIdx = i; break; }
+      }
+      
+      allWraps.forEach((wrap, pi) => {
+        const words = wrap.querySelectorAll('.word-span');
+        if (pi === paraIdx) {
+          const localIdx = globalWordIdx - paraOffsets[paraIdx];
+          words.forEach((el, wi) => {
+            el.classList.toggle('done', wi < localIdx);
+            el.classList.toggle('active', wi === localIdx);
+          });
+        } else if (pi < paraIdx) {
+          words.forEach(el => { el.classList.add('done'); el.classList.remove('active'); });
+        } else {
+          words.forEach(el => el.classList.remove('active', 'done'));
+        }
+      });
+      
+      animFrame = requestAnimationFrame(updateFullWords);
+    }
+    animFrame = requestAnimationFrame(updateFullWords);
+    
     audio.onended = () => {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      clearAllHighlights();
       if (fullAudio === audio) fullAudio = null;
       finishAudio(audio, btn);
       btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> 播放';
     };
     audio.onerror = () => {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      clearAllHighlights();
       if (fullAudio === audio) fullAudio = null;
       finishAudio(audio, btn);
       btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> 播放';
     };
     audio.play().catch(() => {
+      if (animFrame) cancelAnimationFrame(animFrame);
+      clearAllHighlights();
       if (fullAudio === audio) fullAudio = null;
       finishAudio(audio, btn);
       btn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg> 播放';
