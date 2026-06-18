@@ -1095,15 +1095,18 @@ async function getAudioData(key, type) {
     if (!data || !data.b64) return;
     
     // Split paragraph text into individual words for highlighting
+    let wordTimings = null;
     if (paraEl) {
+      // Check if audio data has word timestamps
+      if (data.words && data.words.length > 0) {
+        wordTimings = data.words;
+      }
       const text = paraEl.innerText || paraEl.textContent;
       const words = text.match(/\S+\s*/g) || [text];
       wordCount = words.length;
-      // Wrap each word in a span
       paraEl.innerHTML = words.map((w, i) =>
         `<span class="word-span" data-wi="${i}">${w}</span>`
       ).join('');
-      // Mark all as dimmed initially
       paraEl.querySelectorAll('.word-span').forEach(el => el.classList.add('done'));
     }
     
@@ -1112,11 +1115,30 @@ async function getAudioData(key, type) {
     currentParaBtn = btn;
     btn.classList.add('playing');
     
-    // Word-by-word highlighting synced with audio
+    // Word-by-word highlighting - use timestamps if available, else linear estimate
     function updateWords() {
       if (!audio || audio.paused || !wordCount) return;
-      const pct = audio.currentTime / (audio.duration || 1);
-      const activeIdx = Math.min(Math.floor(pct * wordCount), wordCount - 1);
+      let activeIdx;
+      
+      if (wordTimings && wordTimings.length > 0) {
+        // Use real timestamps (offset/duration in 100ns units)
+        const current100ns = audio.currentTime * 10000000;
+        activeIdx = wordTimings.findIndex(w =>
+          current100ns >= w.offset && current100ns < w.offset + w.duration
+        );
+        if (activeIdx < 0) {
+          // Past the last word
+          if (current100ns >= wordTimings[wordTimings.length - 1].offset + wordTimings[wordTimings.length - 1].duration) {
+            activeIdx = wordCount - 1;
+          } else {
+            activeIdx = -1;
+          }
+        }
+      } else {
+        // Fallback: linear estimate
+        const pct = audio.currentTime / (audio.duration || 1);
+        activeIdx = Math.min(Math.floor(pct * wordCount), wordCount - 1);
+      }
       
       if (paraEl) {
         const words = paraEl.querySelectorAll('.word-span');
